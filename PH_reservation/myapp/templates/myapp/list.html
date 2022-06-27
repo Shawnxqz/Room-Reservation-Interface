@@ -1,0 +1,68 @@
+{% extends 'myapp/base.html' %} {% block content %}
+<div class="container py-5">
+    <h3>{{msg}}</h3>
+    <div class="card rounded-0 mb-5">
+        <div class="card-header">
+            <div class="card-title h3 mb-0">List of Recommended Classrooms</div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="bg-gradient bg-primary text-light">
+                            <th class="p-1 text-center">CATEGORY</th>
+                            <th class="p-1 text-center">ROOM#</th>
+                            <th class="p-1 text-center">STATUS</th>
+                            <th class="p-1 text-center">ENERGYEff</th>
+                            <th class="p-1 text-center">CAPACITY</th>
+                        </tr>
+                    </thead>
+
+                    {% for row in classroom_list %}
+                    <tr>
+                        <td class="px-2 py-1 align-middle">{{row.category}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.classroom_name}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.status}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.energyEffciency}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.capacity}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <div class="card rounded-0">
+                <div class="card-header">
+                    <div class="card-title h3 mb-3">Booking Form</div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form action="{% url 'bookings' %}" method="post" id="book-form">
+                            <h3>Choose classroom to book</h3>
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="classroom_name" class="control-label">Enter Classroom Number</label>
+                                <input name='classroom_name' class="form-control rounded-0" type="text" id="classroom_name">
+                            </div>
+                         
+                            {% if error %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-sm rounded-0 btn-primary w-100" form="book-form">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

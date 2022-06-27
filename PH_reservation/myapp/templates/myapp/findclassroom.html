@@ -1,0 +1,43 @@
+{% extends 'myapp/base.html' %} {% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <div class="card rounded-0">
+                <div class="card-header">
+                    <div class="card-title h3 mb-0">Find Classroom</div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form action="{% url 'findclassroom' %}" method="post" id="find-form">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="category" class="control-labell">Room Category</label>
+                                <input name='category' class="form-control rounded-0" type="text" id="category" value="{% if data.category %}{{data.category}}{% endif %}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="capacity" class="control-labell">Capacity</label>
+                                <input name='capacity' id="capacity" class="form-control rounded-0" type="text" value="{% if data.capacity %}{{data.capacity}}{% endif %}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="energyEff" class="control-labell">Energy Effciency</label>
+                                <input name='energyEff' id="energyEff" class="form-control rounded-0" type="text" value="{% if data.energyEff %}{{data.energyEff}}{% endif %}" required>
+
+                            </div>
+                            {% if error %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                            {% endif %}
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-sm rounded-0 btn-primary w-100" form="find-form">Find</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
