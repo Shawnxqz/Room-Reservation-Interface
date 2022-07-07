@@ -1,3 +1,4 @@
+
 from datetime import datetime
 from unicodedata import category
 from django.contrib import messages
@@ -27,7 +28,7 @@ def findClassroom(request):
     context = {}
     if request.method == 'POST':
         category_r = request.POST.get('category')
-        dest_r = request.POST.get('destination')
+        # dest_r = request.POST.get('destination')
         classroom_list = Classroom.objects.filter()
         # classroom_list = Classroom.objects.filter(category=category_r, dest=dest_r, date__year=year, date__month=month, date__day=day)
         if classroom_list:
@@ -53,14 +54,14 @@ def bookings(request):
             energyEffciency_r = classroom.energyEffciency
             capacity_r = classroom.capacity
             
-            username_r = request.user.username
+            andrewid_r = request.user.username
             email_r = request.user.email
             userid_r = request.user.id
 
             
-            book = Book.objects.create(name=username_r, email=email_r, userid=userid_r, classroom_name=name_r,
+            book = Book.objects.create(andrewid=andrewid_r, email=email_r, userid=userid_r, classroom_name=name_r,
 
-                                        category=category_r, status=status_r, capacity=capacity_r, energyEffciency=energyEffciency_r)
+                                        category=category_r, book_status='BOOKED', capacity=capacity_r, energyEffciency=energyEffciency_r)
             print('------------book id-----------', book.id)
             # book.save()
             return render(request, 'myapp/bookings.html', locals())
@@ -73,20 +74,26 @@ def bookings(request):
 def cancellings(request):
     context = {}
     if request.method == 'POST':
-        id_r = request.POST.get('book_id')
+        id_r = 1
+        try:
+            id_r = request.POST.get('book_id')
+            print(id_r)
+        except ValueError:
+            context["error"] = "Input not valid"
+            return render(request, 'myapp/error.html', context)
 
         try:
             book = Book.objects.get(id=id_r)
             classroom = Classroom.objects.get(classroom_name=book.classroom_name)
 
 
-            Book.objects.filter(id=id_r).update(status='CANCELLED')
-            Book.objects.filter(id=id_r).update(nos=0)
+            Book.objects.filter(id=id_r).update(book_status='CANCELLED')
             messages.success(request, "Booked Classroom has been cancelled successfully.")
             return redirect(seebookings)
         except Book.DoesNotExist:
             context["error"] = "Sorry You have not booked that classroom"
             return render(request, 'myapp/error.html', context)
+        
     else:
         return render(request, 'myapp/findclassroom.html')
 
@@ -106,10 +113,10 @@ def seebookings(request,new={}):
 def signup(request):
     context = {}
     if request.method == 'POST':
-        name_r = request.POST.get('name')
+        andrewid_r = request.POST.get('andrewid')
         email_r = request.POST.get('email')
         password_r = request.POST.get('password')
-        user = User.objects.create_user(name_r, email_r, password_r, )
+        user = User.objects.create_user(andrewid_r, email_r, password_r, )
         if user:
             login(request, user)
             return render(request, 'myapp/thank.html')
@@ -123,13 +130,13 @@ def signup(request):
 def signin(request):
     context = {}
     if request.method == 'POST':
-        name_r = request.POST.get('name')
+        andrewid_r = request.POST.get('andrewid')
         password_r = request.POST.get('password')
-        user = authenticate(request, username=name_r, password=password_r)
+        user = authenticate(request, username=andrewid_r, password=password_r)
         if user:
             login(request, user)
             # username = request.session['username']
-            context["user"] = name_r
+            context["user"] = andrewid_r
             context["id"] = request.user.id
             return render(request, 'myapp/success.html', context)
             # return HttpResponseRedirect('success')

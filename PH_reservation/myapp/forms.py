@@ -9,15 +9,15 @@ User = get_user_model()
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField()
+    andrewid = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean(self, *args, **kwargs):
-        username = self.cleaned_data.get('username')
+        andrewid = self.cleaned_data.get('andrewid')
         password = self.cleaned_data.get('password')
 
-        if username and password:
-            user = authenticate(username=username, password=password)
+        if andrewid and password:
+            user = authenticate(andrewid=andrewid, password=password)
             if not user:
                 raise forms.ValidationError('This user does not exist')
             if not user.check_password(password):
@@ -38,7 +38,7 @@ class UserRegisterForm(forms.ModelForm):
             'username',
             'email',
             'email2',
-            'password'
+            'password',
         ]
 
     def clean(self, *args, **kwargs):

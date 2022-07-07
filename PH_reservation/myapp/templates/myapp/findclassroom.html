@@ -10,7 +10,112 @@
                     <div class="container-fluid">
                         <form action="{% url 'findclassroom' %}" method="post" id="find-form">
                             {% csrf_token %}
-                            <div class="mb-3">
+                            <div class="form-group">
+                                <div class="mb-3">
+                                    <label for="noice" class="form-label h4">Noice</label>
+
+                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalNoice').html($(this).val())">
+                                    <span id="rangevalNoice">50<!-- Default value --></span>
+                                </div>    
+                            </div>
+                            
+                            <div class="form-group"> 
+                                <div class="mb-3">
+                                    <label for="sizeOfRoom" class="form-label h4">Size of Room</label> 
+                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalSize').html($(this).val())">
+                                    <span id="rangevalSize">50<!-- Default value --></span>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group"> 
+                                <div class="mb-3">
+                                    <label for="capacity" class="form-label h4" >Capacity</label> 
+                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalCapacity').html($(this).val())">
+                                    <span id="rangevalCapacity">50<!-- Default value --></span>
+
+                                </div>
+                            </div>
+                            
+                            <div class="form-group"> 
+                                <div class="mb-3">
+
+                                    <form action="/action_page.php">
+                                        <label for="startDate" class="form-label h4">Start Date</label>
+                                        <input type="date" id="startDate" name="startDate">
+                                        <!-- <input type="submit"> -->
+                                    </form>
+                                    <br>
+                                    <form action="/action_page.php">
+                                        <label for="startTime" class="form-label h4">Start Time</label>
+                                        <input type="time" id="startTime" name="startTime">
+                                        <!-- <input type="submit"> -->
+                                    </form>
+                                    <label for="capacity" class="form-label h4" >Expected Duration</label> 
+                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalDuration').html($(this).val())">
+                                    <span id="rangevalDuration">50<!-- Default value --></span>
+
+                                </div>
+                            </div>
+                            
+                            <!-- Type of Seating -->
+                            <h1 class="h4">Type of Seating</h1>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Desk
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                  Table
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                  Table
+                                </label>
+                            </div>
+
+                            <!-- Food allowed -->
+                            <h1 class="h4">Food Allowed</h1>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                  No
+                                </label>
+                            </div>
+
+                            <!-- Monitor availablity -->
+                            <h1 class="h4">Monitor Availablity</h1>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                  No
+                                </label>
+                            </div>
+
+                            
+
+
+                            <!-- <div class="mb-3">
                                 <label for="category" class="control-labell">Room Category</label>
                                 <input name='category' class="form-control rounded-0" type="text" id="category" value="{% if data.category %}{{data.category}}{% endif %}" required>
                             </div>
@@ -22,7 +127,7 @@
                                 <label for="energyEff" class="control-labell">Energy Effciency</label>
                                 <input name='energyEff' id="energyEff" class="form-control rounded-0" type="text" value="{% if data.energyEff %}{{data.energyEff}}{% endif %}" required>
 
-                            </div>
+                            </div> -->
                             {% if error %}
                             <div class="alert alert-danger">
                                 {{error}}

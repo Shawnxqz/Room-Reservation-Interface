@@ -20,9 +20,9 @@ class Classroom(models.Model):
 
 
 class User(models.Model):
-    user_id = models.AutoField(primary_key=True)
+    userid = models.AutoField(primary_key=True)
     email = models.EmailField()
-    name = models.CharField(max_length=30)
+    andrewid = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
     
     class Meta:
@@ -38,15 +38,16 @@ class Book(models.Model):
     BOOKED = 'B'
     CANCELLED = 'C'
 
-    TICKET_STATUSES = ((BOOKED, 'Booked'),
+    CLASSROOM_STATUSES = ((BOOKED, 'Booked'),
                        (CANCELLED, 'Cancelled'),)
+    # bookid = models.DecimalField(decimal_places=0, max_digits=2)
     email = models.EmailField()
-    name = models.CharField(max_length=30)
+    andrewid = models.CharField(max_length=30)
     userid =models.DecimalField(decimal_places=0, max_digits=2)
 
     classroom_name = models.CharField(max_length=30)
     category = models.CharField(max_length=30)
-    status = models.CharField(max_length=30)
+    book_status = models.CharField(choices=CLASSROOM_STATUSES, default=BOOKED, max_length=30)
     energyEffciency = models.CharField(max_length=30)
     capacity = models.DecimalField(decimal_places=2, max_digits=6)
 

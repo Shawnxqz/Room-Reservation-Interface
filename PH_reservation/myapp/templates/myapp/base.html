@@ -15,22 +15,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-gradient bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: rgb(187, 0, 0);">
     <div class="container">
-        <a class="navbar-brand" href="#" style="color: white;">Porter Hall Room Reservation</a>
+        <a class="navbar-brand" href="#" style="color: #ffffff;">
+            <img src="../static/mysite/images/cmu-seal-w.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            PorterHall Room Reservation
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav" >
-                <a class="nav-item nav-link active" href="{% url 'home' %}" style="color: white;">Home</a>
-                <a class="nav-item nav-link" href="{% url 'findclassroom' %}" style="color: white;">Find Classroom</a>
-                <a class="nav-item nav-link" href="{% url 'seebookings' %}" style="color: white;">See Bookings</a>
+                <a class="nav-item nav-link active" href="{% url 'home' %}" style="color: #ffffff;">Home</a>
+                <a class="nav-item nav-link" href="{% url 'findclassroom' %}" style="color: #ffffff;">Find Classroom</a>
+                <a class="nav-item nav-link" href="{% url 'seebookings' %}" style="color: #ffffff;">See Bookings</a>
                 {% if request.user.is_active %}
-                <a class="nav-item nav-link " href="{% url 'signout' %}" style="color: white;">Logout</a>
+                <a class="nav-item nav-link " href="{% url 'signout' %}" style="color: #ffffff;">Logout</a>
                 {% else %}
-                <a class="nav-item nav-link " href="{% url 'signup' %}" style="color: white;">Registration</a>
+                <a class="nav-item nav-link " href="{% url 'signup' %}" style="color: #ffffff;">Registration</a>
                 {% endif %}
 
 

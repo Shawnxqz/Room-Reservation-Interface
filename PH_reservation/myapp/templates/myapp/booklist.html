@@ -5,11 +5,26 @@
     {% endif %} {% endfor %}
     <div class="card rounded-0">
         <div class="card-header">
-            <div class="card-title h3 mb-0">List of Bookings</div>
+            <div class="card-title h3 mb-0" style="color: #000000;">Booking Information Sheet</div>
         </div>
         <div class="card-body">
             <div class="container-fluid">
-                <table class="table table-bordered table-striped">
+                <table class="table table-striped mt-5">
+                    <thead>
+                      <tr>
+                        <th>Book ID</th>
+                        <th>Andrew ID</th>
+                        <th>Classroom#</th>
+                        <th>RoomType</th>
+                        <th>RoomCapacity</th>
+                        <th>EnergyEffciency</th>
+                        <th>BookStatus</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <!-- <tbody id="room_reservation"></tbody>
+                  </table>
+                <table class="table table-striped mt-5">
                     <thead>
                         <tr class="bg-gradient bg-primary text-light">
                             <th class="p-1 text-center">BOOKING ID</th>
@@ -20,24 +35,35 @@
                             <th class="p-1 text-center">CAPACITY</th>
                             <th class="p-1 text-center">ENERGYEFFCIENCY</th>
                         </tr>
-                    </thead>
+                    </thead> -->
 
                     {% for row in book_list %}
                     <tr>
                         <td class="px-2 py-1 align-middle">{{row.id}}</td>
-                        <td class="px-2 py-1 align-middle">{{row.name}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.andrewid}}</td>
                         <td class="px-2 py-1 align-middle">{{row.classroom_name}}</td>
                         <td class="px-2 py-1 align-middle">{{row.category}}</td>
-                        <td class="px-2 py-1 align-middle">{{row.status}}</td>
                         <td class="px-2 py-1 align-middle">{{row.capacity}}</td>
                         <td class="px-2 py-1 align-middle">{{row.energyEffciency}}</td>
+                        {% if row.book_status == "BOOKED" %}
+                            <td class="px-2 py-1 align-middle" style="color:forestgreen">{{row.book_status}}</td>
+                        {% else %}
+                            <td class="px-2 py-1 align-middle" style="color: orangered;">{{row.book_status}}</td>
+                        {% endif %}
+
+                        <td class="px-2 py-1 align-middle">
+                            <form action="{% url 'cancellings' %}" method="post" id="cancel-form">
+                                {% csrf_token %}
+                                <button type="submit"  name="book_id" value={{row.id}}>Cancel</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>
             </div>
         </div>
     </div>
-    <div class="row mt-3 justify-content-center">
+    <!-- <div class="row mt-3 justify-content-center">
         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12">
             <div class="card rounded-0">
                 <div class="card-header">
@@ -65,7 +91,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 
