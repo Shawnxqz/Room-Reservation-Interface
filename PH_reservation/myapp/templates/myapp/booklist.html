@@ -17,7 +17,7 @@
                         <th>Classroom#</th>
                         <th>RoomType</th>
                         <th>RoomCapacity</th>
-                        <th>EnergyEffciency</th>
+                        <th>EnergyEfficiency</th>
                         <th>BookStatus</th>
                         <th></th>
                       </tr>
@@ -44,7 +44,7 @@
                         <td class="px-2 py-1 align-middle">{{row.classroom_name}}</td>
                         <td class="px-2 py-1 align-middle">{{row.category}}</td>
                         <td class="px-2 py-1 align-middle">{{row.capacity}}</td>
-                        <td class="px-2 py-1 align-middle">{{row.energyEffciency}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.energyEfficiency}}</td>
                         {% if row.book_status == "BOOKED" %}
                             <td class="px-2 py-1 align-middle" style="color:forestgreen">{{row.book_status}}</td>
                         {% else %}

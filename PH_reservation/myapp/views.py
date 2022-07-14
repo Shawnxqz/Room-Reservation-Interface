@@ -27,9 +27,24 @@ def home(request):
 def findClassroom(request):
     context = {}
     if request.method == 'POST':
+        # try:
         category_r = request.POST.get('category')
         # dest_r = request.POST.get('destination')
-        classroom_list = Classroom.objects.filter()
+
+
+        search_room = request.POST.get('searchClassroom')
+
+
+
+        if search_room is None:
+            classroom_list = Classroom.objects.filter()
+        else:
+            classroom_list = Classroom.objects.filter(classroom_name=search_room)
+
+
+
+            
+
         # classroom_list = Classroom.objects.filter(category=category_r, dest=dest_r, date__year=year, date__month=month, date__day=day)
         if classroom_list:
             return render(request, 'myapp/list.html', locals())
@@ -37,6 +52,15 @@ def findClassroom(request):
             context['data'] = request.POST
             context["error"] = "No available Classroom"
             return render(request, 'myapp/findclassroom.html', context)
+        # catch:
+        #     search_room = request.POST.get('searchClassroom')
+        #     if search_room != '':
+        #         classroom_list = Classroom.objects.filter(classroom_name=search_room)
+        #         return render(request, 'myapp/list.html', locals())
+        #     else:
+        #         context['data'] = request.POST
+        #         context["error"] = "No available Classroom"
+        #         return render(request, 'myapp/findclassroom.html', context)
     else:
         return render(request, 'myapp/findclassroom.html')
 
@@ -45,13 +69,14 @@ def findClassroom(request):
 def bookings(request):
     context = {}
     if request.method == 'POST':
+
         name_r = request.POST.get('classroom_name')
         classroom = Classroom.objects.get(classroom_name=name_r)
         if classroom:
             category_r = classroom.category
             name_r = classroom.classroom_name
             status_r = classroom.status
-            energyEffciency_r = classroom.energyEffciency
+            energyEfficiency_r = classroom.energyEfficiency
             capacity_r = classroom.capacity
             
             andrewid_r = request.user.username
@@ -61,7 +86,7 @@ def bookings(request):
             
             book = Book.objects.create(andrewid=andrewid_r, email=email_r, userid=userid_r, classroom_name=name_r,
 
-                                        category=category_r, book_status='BOOKED', capacity=capacity_r, energyEffciency=energyEffciency_r)
+                                        category=category_r, book_status='BOOKED', capacity=capacity_r, energyEfficiency=energyEfficiency_r)
             print('------------book id-----------', book.id)
             # book.save()
             return render(request, 'myapp/bookings.html', locals())

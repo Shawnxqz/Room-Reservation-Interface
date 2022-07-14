@@ -13,10 +13,21 @@
                             <div class="form-group">
                                 <div class="mb-3">
                                     <label for="noice" class="form-label h4">Noice</label>
+{#                                    <input id="multiRange" class="multi-range" type="range" />#}
+{#                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalNoice').html($(this).val())">#}
+{#                                    <span id="rangevalNoice">50<!-- Default value --></span>#}
+{#                                    <div class="wrapper">#}
+                                    <div class="btn-group " role="group" aria-label="Basic radio toggle button group">
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="btnradio1">Quiet</label>
 
-                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalNoice').html($(this).val())">
-                                    <span id="rangevalNoice">50<!-- Default value --></span>
-                                </div>    
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="btnradio2">Whisper</label>
+
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="btnradio3">Talk Free</label>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div class="form-group"> 
@@ -76,7 +87,7 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
                                 <label class="form-check-label" for="flexCheckChecked">
-                                  Table
+                                  Couch
                                 </label>
                             </div>
 
@@ -96,8 +107,8 @@
                                 </label>
                             </div>
 
-                            <!-- Monitor availablity -->
-                            <h1 class="h4">Monitor Availablity</h1>
+                            <!-- Monitor available -->
+                            <h1 class="h4">Monitor Available</h1>
 
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -114,20 +125,6 @@
 
                             
 
-
-                            <!-- <div class="mb-3">
-                                <label for="category" class="control-labell">Room Category</label>
-                                <input name='category' class="form-control rounded-0" type="text" id="category" value="{% if data.category %}{{data.category}}{% endif %}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="capacity" class="control-labell">Capacity</label>
-                                <input name='capacity' id="capacity" class="form-control rounded-0" type="text" value="{% if data.capacity %}{{data.capacity}}{% endif %}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="energyEff" class="control-labell">Energy Effciency</label>
-                                <input name='energyEff' id="energyEff" class="form-control rounded-0" type="text" value="{% if data.energyEff %}{{data.energyEff}}{% endif %}" required>
-
-                            </div> -->
                             {% if error %}
                             <div class="alert alert-danger">
                                 {{error}}
@@ -144,5 +141,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
