@@ -13,18 +13,14 @@
                             <div class="form-group">
                                 <div class="mb-3">
                                     <label for="noice" class="form-label h4">Noice</label>
-{#                                    <input id="multiRange" class="multi-range" type="range" />#}
-{#                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalNoice').html($(this).val())">#}
-{#                                    <span id="rangevalNoice">50<!-- Default value --></span>#}
-{#                                    <div class="wrapper">#}
                                     <div class="btn-group " role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                        <input type="radio" class="btn-check" name="noise" id="btnradio1" autocomplete="off"  checked value="Quiet">
                                         <label class="btn btn-outline-primary" for="btnradio1">Quiet</label>
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                        <input type="radio" class="btn-check" name="noise" id="btnradio2" autocomplete="off" value="Whisper">
                                         <label class="btn btn-outline-primary" for="btnradio2">Whisper</label>
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                        <input type="radio" class="btn-check" name="noise" id="btnradio3" autocomplete="off" value="Talk Free">
                                         <label class="btn btn-outline-primary" for="btnradio3">Talk Free</label>
                                     </div>
                                 </div>
@@ -32,8 +28,8 @@
                             
                             <div class="form-group"> 
                                 <div class="mb-3">
-                                    <label for="sizeOfRoom" class="form-label h4">Size of Room</label> 
-                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalSize').html($(this).val())">
+                                    <label for="sizeOfRoom" class="form-label h4">Number Students</label> 
+                                    <input type="range" class="form-control-range" name="sizeOfRoom"  id="sizeOfRoom" onInput="$('#rangevalSize').html($(this).val())">
                                     <span id="rangevalSize">50<!-- Default value --></span>
 
                                 </div>
@@ -42,7 +38,7 @@
                             <div class="form-group"> 
                                 <div class="mb-3">
                                     <label for="capacity" class="form-label h4" >Capacity</label> 
-                                    <input type="range" class="form-control-range" id="noice" onInput="$('#rangevalCapacity').html($(this).val())">
+                                    <input type="range" class="form-control-range" name="capacity" id="capacity" onInput="$('#rangevalCapacity').html($(this).val())">
                                     <span id="rangevalCapacity">50<!-- Default value --></span>
 
                                 </div>

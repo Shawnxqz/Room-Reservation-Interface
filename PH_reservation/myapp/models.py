@@ -10,7 +10,8 @@ class Classroom(models.Model):
     status = models.CharField(max_length=30)
     energyEfficiency = models.DecimalField(decimal_places=2, max_digits=5)
     capacity = models.DecimalField(decimal_places=0, max_digits=3)
-    
+    number_student = models.DecimalField(decimal_places=0, max_digits=3)
+    noise = models.CharField(max_length=30)
     
     class Meta:
         verbose_name_plural = "List of Classrooms"

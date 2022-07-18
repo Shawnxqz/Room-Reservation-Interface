@@ -33,13 +33,16 @@ def findClassroom(request):
 
 
         search_room = request.POST.get('searchClassroom')
-
+        numberStudent = int(request.POST.get('sizeOfRoom'))
+        noice_front =request.POST.getlist('noise')
 
 
         if search_room is None:
-            classroom_list = Classroom.objects.filter()
+            classroom_list = Classroom.objects.filter(status='available',capacity__gte=numberStudent,noise=noice_front[0])
+            print(len(noice_front))
         else:
             classroom_list = Classroom.objects.filter(classroom_name=search_room)
+         
 
 
 
