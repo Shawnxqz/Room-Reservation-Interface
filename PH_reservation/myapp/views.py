@@ -8,6 +8,7 @@ from decimal import Decimal
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from grpc import Status
 from .models import User, Classroom, Book
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -35,11 +36,11 @@ def findClassroom(request):
         search_room = request.POST.get('searchClassroom')
         numberStudent = int(request.POST.get('sizeOfRoom'))
         noice_front =request.POST.getlist('noise')
+        
 
 
         if search_room is None:
             classroom_list = Classroom.objects.filter(status='available',capacity__gte=numberStudent,noise=noice_front[0])
-            print(len(noice_front))
         else:
             classroom_list = Classroom.objects.filter(classroom_name=search_room)
          
@@ -75,12 +76,14 @@ def bookings(request):
 
         name_r = request.POST.get('classroom_name')
         classroom = Classroom.objects.get(classroom_name=name_r)
+        share_room = request.POST.getlist('shareRoom')
         if classroom:
             category_r = classroom.category
             name_r = classroom.classroom_name
             status_r = classroom.status
             energyEfficiency_r = classroom.energyEfficiency
             capacity_r = classroom.capacity
+            
             
             andrewid_r = request.user.username
             email_r = request.user.email
@@ -90,6 +93,7 @@ def bookings(request):
             book = Book.objects.create(andrewid=andrewid_r, email=email_r, userid=userid_r, classroom_name=name_r,
 
                                         category=category_r, book_status='BOOKED', capacity=capacity_r, energyEfficiency=energyEfficiency_r)
+           
             print('------------book id-----------', book.id)
             # book.save()
             return render(request, 'myapp/bookings.html', locals())
