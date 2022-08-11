@@ -51,7 +51,8 @@ class Book(models.Model):
     book_status = models.CharField(choices=CLASSROOM_STATUSES, default=BOOKED, max_length=30)
     energyEfficiency = models.DecimalField(decimal_places=2, max_digits=5)
     capacity = models.DecimalField(decimal_places=0, max_digits=3)
-
+    number_student = models.DecimalField(decimal_places=0, max_digits=3)
+    shareRoom = models.CharField(max_length=30)
     class Meta:
         verbose_name_plural = "List of Books"
     def __str__(self):
