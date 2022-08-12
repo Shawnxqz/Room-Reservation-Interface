@@ -34,12 +34,11 @@ def findClassroom(request):
 
         search_room = request.POST.get('searchClassroom')
         numberStudent = int(request.POST.get('sizeOfRoom'))
-        noice_front =request.POST.getlist('noise')
+        noise_front =request.POST.getlist('noise')
 
 
         if search_room is None:
-            classroom_list = Classroom.objects.filter(status='available',capacity__gte=numberStudent,noise=noice_front[0])
-            print(len(noice_front))
+            classroom_list = Classroom.objects.filter(status='available',capacity__gte=numberStudent,noise=noise_front[0])
         else:
             classroom_list = Classroom.objects.filter(classroom_name=search_room)
          
@@ -73,7 +72,10 @@ def bookings(request):
     context = {}
     if request.method == 'POST':
 
-        name_r = request.POST.get('classroom_name')
+        data_r = request.POST.get('classroom_name,numberStudent')
+        name_r = data_r.split(",")[0]
+        numStudent = int(data_r.split(",")[1])
+
         classroom = Classroom.objects.get(classroom_name=name_r)
         if classroom:
             category_r = classroom.category
@@ -85,11 +87,14 @@ def bookings(request):
             andrewid_r = request.user.username
             email_r = request.user.email
             userid_r = request.user.id
+            
 
             
             book = Book.objects.create(andrewid=andrewid_r, email=email_r, userid=userid_r, classroom_name=name_r,
 
                                         category=category_r, book_status='BOOKED', capacity=capacity_r, energyEfficiency=energyEfficiency_r)
+            curNum = classroom.number_student + numStudent
+            Classroom.objects.filter(classroom_name=name_r).update(number_student=curNum)
             print('------------book id-----------', book.id)
             # book.save()
             return render(request, 'myapp/bookings.html', locals())
